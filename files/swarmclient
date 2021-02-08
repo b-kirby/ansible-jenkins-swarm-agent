@@ -15,7 +15,7 @@ source /etc/rc.d/init.d/functions
 ####
 
 # The user to run swarm-client as
-USER=${USER:="jenkins"}
+USER=${USER:="root"}
 
 # The location that the pid file should be written to
 PIDFILE=${PIDFILE:="/var/run/jenkins/swarm-client.pid"}

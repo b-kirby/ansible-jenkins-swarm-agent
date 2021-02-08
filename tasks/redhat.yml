@@ -1,12 +1,4 @@
 ---
-- name: Add a jenkins user and add it to the docker group
-  user:
-    name: jenkins
-    groups: docker
-    append: yes
-    state: present
-  become: true
-
 - name: Copy the Swarm startup script into init.d
   copy:
     src: swarmclient
@@ -28,8 +20,8 @@
   get_url:
     url: "{{ jenkins_swarm_download_url }}"
     dest: "{{ jenkins_swarm_path }}"
-    owner: jenkins
-    group: jenkins
+    owner: root
+    group: root
   become: true
   notify:
     - Restart Swarm Client service
@@ -53,8 +45,8 @@
   template:
     src: swarm-client-linux.j2
     dest: "{{ jenkins_swarm_config_path }}/swarm-client"
-    owner: jenkins
-    group: jenkins
+    owner: root
+    group: root
     mode: 0755
   tags:
     - configuration
